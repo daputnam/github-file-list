@@ -12,17 +12,13 @@ Time.propTypes = {
   time: PropTypes.string
 };
 
-const FileListItem = props => {
-  return <div>File list item</div>;
-};
+
 
 const FileList = ({ files }) => (
   <table className="file-list">
     <tbody>
       {files.map(file => (
-        <tr className="file-list-item" key={file.id}>
-          <td className="file-name">{file.name}</td>
-        </tr>
+        <FileListItem key={file.id} file={file}/>
       ))}
     </tbody>
   </table>
@@ -30,6 +26,15 @@ const FileList = ({ files }) => (
 FileList.propTypes = {
   files: PropTypes.array
 };
+const FileListItem = ({ file }) => (
+  <tr className="file-list-item">
+    <td className="file-name">{file.name}</td>
+  </tr>
+);
+FileListItem.propTypes = {
+  file: PropTypes.object.isRequired
+};
+
 const testFiles = [
   {
     id: 1,
