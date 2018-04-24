@@ -5,16 +5,18 @@ import Time from "./time";
 import "./index.css";
 
 function getFileName(file) {
-  return [
-    <FileIcon file={file} key={0}/>,
-    <td className="file-name" key={1}>{file.name}</td>
-  ];
+  return (
+    <span className="file-name-badge">
+      <FileIcon file={file} key={0}/>
+      <span className="file-name" key={1}>{file.name}</span>
+    </span>
+  );
 }
 
 function CommitMessage({commit}) {
   console.log(commit);
   return (
-    <td>{commit.message}</td>
+    <span >{commit.message}</span>
   )
 }
 function FileIcon({ file }) {
@@ -23,9 +25,9 @@ function FileIcon({ file }) {
     icon = 'fa-folder';
   }
   return (
-    <td className="file-icon">
+    <span className="file-icon">
       <i className={`far ${icon}`}/>
-    </td>
+    </span>
   )
 }
 FileIcon.propTypes = {
@@ -33,26 +35,24 @@ FileIcon.propTypes = {
 };
 
 const FileList = ({files}) => (
-  <table className="file-list">
-    <tbody>
+    <div className="file-list">
       {files.map(file => (
         <FileListItem key={file.id} file={file}/>
       ))}
-    </tbody>
-  </table>
+    </div>
 );
 FileList.propTypes = {
   files: PropTypes.array
 };
 
 const FileListItem = ({ file }) => (
-  <tr className="file-list-item">
+  <div className="file-list-item">
     {getFileName(file)}
     <CommitMessage commit={file.latestCommit} />
-    <td className="age">
+    <span className="age">
       <Time time={file.updated_at}/>
-    </td>
-  </tr>
+    </span>
+  </div>
 );
 FileListItem.propTypes = {
   file: PropTypes.object.isRequired

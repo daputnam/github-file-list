@@ -37,18 +37,27 @@ hr {
   border-collapse: collapse;
 }
 
-.file-list td {
+.file-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-top: 1px solid #ccc;
+  padding-top:5px;
+  height: 30px;
 }
-
+.file-name-badge {
+  min-width: 400px;
+}
 .file-name {
   padding:4px;
   max-width: 180px;
+  flex-grow:1;
 }
 
 .file-icon {
   width: 17px;
   padding-left: 4px;
+  
 }
 
 .file-icon .fa-folder {
