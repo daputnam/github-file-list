@@ -1,38 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import CommitMessage from "./components/CommitMessage";
+import FileListItem from "./components/FileListItem";
 import PropTypes from "prop-types";
 import Time from "./time";
 import "./index.css";
-
-function getFileName(file) {
-  return (
-    <span className="file-name-badge">
-      <FileIcon file={file} key={0}/>
-      <span className="file-name" key={1}>{file.name}</span>
-    </span>
-  );
-}
-
-function CommitMessage({commit}) {
-  console.log(commit);
-  return (
-    <span >{commit.message}</span>
-  )
-}
-function FileIcon({ file }) {
-  let icon = 'fa-file-alt';
-  if(file.type === 'folder'){
-    icon = 'fa-folder';
-  }
-  return (
-    <span className="file-icon">
-      <i className={`far ${icon}`}/>
-    </span>
-  )
-}
-FileIcon.propTypes = {
-  file: PropTypes.object.isRequired
-};
 
 const FileList = ({files}) => (
     <div className="file-list">
@@ -45,18 +17,7 @@ FileList.propTypes = {
   files: PropTypes.array
 };
 
-const FileListItem = ({ file }) => (
-  <div className="file-list-item">
-    {getFileName(file)}
-    <CommitMessage commit={file.latestCommit} />
-    <span className="age">
-      <Time time={file.updated_at}/>
-    </span>
-  </div>
-);
-FileListItem.propTypes = {
-  file: PropTypes.object.isRequired
-};
+
 
 const testFiles = [
   {
